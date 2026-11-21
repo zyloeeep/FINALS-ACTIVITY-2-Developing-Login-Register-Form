@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Paw Haven</title>
+  <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="relative min-h-screen overflow-x-hidden bg-sage font-sans text-forest-dark antialiased">
+
+  <main class="relative z-10 mx-auto flex min-h-screen max-w-6xl items-center justify-center px-6 pb-40 pt-10">
+    <section class="w-full max-w-md rounded-3xl bg-cream-card p-10 text-center shadow-xl">
+      <div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-sage/40">
+        <img src="{% static 'icons/paw.svg' %}" alt="" class="h-8 w-8">
+      </div>
+      <h1 class="text-2xl font-bold">Welcome, {{ user.full_name }}!</h1>
+      <p class="mt-2 text-sm">Your Paw Haven account is ready. You are signed in as {{ user.email }}.</p>
+
+      <form method="post" action="{% url 'logout' %}" class="mt-8">
+        {% csrf_token %}
+        <button type="submit"
+          class="flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-forest font-semibold text-cream shadow-md hover:bg-forest-dark">
+          Log out
+          <img src="{% static 'icons/arrowright.svg' %}" alt="" class="h-5 w-5">
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <img src="{% static 'image/wave.png' %}" alt="" class="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-auto w-full">
+</body>
+</html>

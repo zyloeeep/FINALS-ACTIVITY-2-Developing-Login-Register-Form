@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In | Paw Haven</title>
+  <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="relative min-h-screen overflow-x-hidden bg-sage font-sans text-forest-dark antialiased">
+
+  <main class="relative z-10 mx-auto grid min-h-screen max-w-6xl items-center gap-10 px-6 pb-40 pt-10 lg:grid-cols-2 lg:gap-16">
+
+    <!-- Left: message and illustration -->
+    <section>
+      <h1 class="text-4xl font-bold leading-tight lg:text-5xl">Your new best friend is waiting.</h1>
+      <p class="mt-4 max-w-md text-lg leading-relaxed lg:min-h-[5.5rem]">
+        Log in to pick up where you left off: your saved pets, adoption requests, and messages from shelters.
+      </p>
+
+      <ul class="mt-6 space-y-3 font-medium">
+        <li class="flex items-center gap-3"><img src="{% static 'icons/check.svg' %}" alt="" class="h-6 w-6">Your saved favorites in one place</li>
+        <li class="flex items-center gap-3"><img src="{% static 'icons/check.svg' %}" alt="" class="h-6 w-6">Track every adoption request</li>
+        <li class="flex items-center gap-3"><img src="{% static 'icons/check.svg' %}" alt="" class="h-6 w-6">Updates from verified shelters</li>
+      </ul>
+
+      <img src="{% static 'image/catdog.png' %}" alt="A happy dog and a cat sitting together" class="mt-8 w-full max-w-sm">
+    </section>
+
+    <!-- Right: login card (same height as the sign up card) -->
+    <section class="mx-auto flex w-full max-w-md flex-col justify-center rounded-3xl bg-cream-card p-8 shadow-xl lg:min-h-[41rem]">
+      <div class="mb-6 flex flex-col items-center text-center">
+        <div class="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-sage/40">
+          <img src="{% static 'icons/paw.svg' %}" alt="" class="h-8 w-8">
+        </div>
+        <h2 class="text-2xl font-bold">Welcome Back!</h2>
+        <p class="mt-1 text-sm">Log in to continue your pet adoption journey.</p>
+      </div>
+
+            <form method="post" novalidate class="space-y-5">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+          <p class="rounded-2xl bg-red-100 px-4 py-3 text-center text-sm text-red-800">{{ form.non_field_errors.0 }}</p>
+        {% endif %}
+
+        <div>
+          <div class="relative">
+            <label for="email" class="sr-only">Email Address</label>
+            <img src="{% static 'icons/email.svg' %}" alt="" class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2">
+            <input id="email" name="email" type="email" placeholder="Email Address" autocomplete="email"
+              value="{{ form.email.value|default:'' }}"
+              class="h-12 w-full rounded-2xl border-[1.5px] border-forest bg-white/70 pl-12 pr-4 text-sm placeholder:text-forest-dark/70 focus:outline-none focus:ring-2 focus:ring-forest">
+          </div>
+          {% if form.email.errors %}<p class="mt-1 pl-2 text-sm text-red-700">{{ form.email.errors.0 }}</p>{% endif %}
+        </div>
+
+        <div>
+          <div class="relative">
+            <label for="password" class="sr-only">Password</label>
+            <img src="{% static 'icons/lock.svg' %}" alt="" class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2">
+            <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password"
+              class="h-12 w-full rounded-2xl border-[1.5px] border-forest bg-white/70 pl-12 pr-12 text-sm placeholder:text-forest-dark/70 focus:outline-none focus:ring-2 focus:ring-forest">
+            <button type="button" aria-label="Show password"
+              data-toggle-password="password"
+              data-icon-hidden="{% static 'icons/closeeye.svg' %}"
+              data-icon-visible="{% static 'icons/openeye.svg' %}"
+              class="absolute right-4 top-1/2 -translate-y-1/2">
+              <img src="{% static 'icons/closeeye.svg' %}" alt="" class="h-5 w-5">
+            </button>
+          </div>
+          {% if form.password.errors %}<p class="mt-1 pl-2 text-sm text-red-700">{{ form.password.errors.0 }}</p>{% endif %}
+        </div>
+
+        <div class="flex items-center justify-between text-sm">
+          <label class="flex items-center gap-2">
+            <input type="checkbox" name="remember_me" class="h-4 w-4 accent-forest" {% if form.remember_me.value %}checked{% endif %}>
+            Remember me
+          </label>
+          <a href="#" class="underline hover:text-forest">Forgot password?</a>
+        </div>
+
+        <button type="submit"
+          class="flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-forest font-semibold text-cream shadow-md hover:bg-forest-dark">
+          Log In
+          <img src="{% static 'icons/arrowright.svg' %}" alt="" class="h-5 w-5">
+        </button>
+      </form>
+
+      <p class="mt-5 text-center text-sm">
+        Don't have an account? <a href="{% url 'signup' %}" class="underline hover:text-forest">Register here</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Decorative wave -->
+  <img src="{% static 'image/wave.png' %}" alt="" class="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-auto w-full">
+
+  <script src="{% static 'js/password-toggle.js' %}" defer></script>
+</body>
+</html>

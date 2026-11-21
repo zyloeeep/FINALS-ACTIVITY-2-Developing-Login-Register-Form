@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | Paw Haven</title>
+  <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="relative min-h-screen overflow-x-hidden bg-sage font-sans text-forest-dark antialiased">
+
+  <main class="relative z-10 mx-auto grid min-h-screen max-w-6xl items-center gap-10 px-6 pb-40 pt-10 lg:grid-cols-2 lg:gap-16">
+
+    <section>
+      <h1 class="text-4xl font-bold leading-tight lg:text-5xl">Give a pet a forever home.</h1>
+      <p class="mt-4 max-w-md text-lg leading-relaxed">
+        Create an account to save your favorite pets, track adoption requests, and meet animals waiting for someone like you.
+      </p>
+
+      <ul class="mt-6 space-y-3 font-medium">
+        <li class="flex items-center gap-3"><img src="{% static 'icons/check.svg' %}" alt="" class="h-6 w-6">Verified shelters and rescuers</li>
+        <li class="flex items-center gap-3"><img src="{% static 'icons/check.svg' %}" alt="" class="h-6 w-6">A simple, guided adoption process</li>
+        <li class="flex items-center gap-3"><img src="{% static 'icons/check.svg' %}" alt="" class="h-6 w-6">Care tips for your new family member</li>
+      </ul>
+
+      <img src="{% static 'image/catdog.png' %}" alt="A happy dog and a cat sitting together" class="mt-8 w-full max-w-sm">
+    </section>
+
+    <section class="mx-auto w-full max-w-md rounded-3xl bg-cream-card p-8 shadow-xl">
+      <div class="mb-6 flex flex-col items-center text-center">
+        <div class="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-sage/40">
+          <img src="{% static 'icons/paw.svg' %}" alt="" class="h-8 w-8">
+        </div>
+        <h2 class="text-2xl font-bold">Create Account</h2>
+        <p class="mt-1 text-sm">Be part of Paw Haven today!</p>
+      </div>
+
+            <form method="post" novalidate class="space-y-4">
+        {% csrf_token %}
+
+        <div>
+          <div class="relative">
+            <label for="full_name" class="sr-only">Full Name</label>
+            <img src="{% static 'icons/person.svg' %}" alt="" class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2">
+            <input id="full_name" name="full_name" type="text" placeholder="Full Name" autocomplete="name"
+              value="{{ form.full_name.value|default:'' }}"
+              class="h-12 w-full rounded-2xl border-[1.5px] border-forest bg-white/70 pl-12 pr-4 text-sm placeholder:text-forest-dark/70 focus:outline-none focus:ring-2 focus:ring-forest">
+          </div>
+          {% if form.full_name.errors %}<p class="mt-1 pl-2 text-sm text-red-700">{{ form.full_name.errors.0 }}</p>{% endif %}
+        </div>
+
+        <div>
+          <div class="relative">
+            <label for="email" class="sr-only">Email Address</label>
+            <img src="{% static 'icons/email.svg' %}" alt="" class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2">
+            <input id="email" name="email" type="email" placeholder="Email Address" autocomplete="email"
+              value="{{ form.email.value|default:'' }}"
+              class="h-12 w-full rounded-2xl border-[1.5px] border-forest bg-white/70 pl-12 pr-4 text-sm placeholder:text-forest-dark/70 focus:outline-none focus:ring-2 focus:ring-forest">
+          </div>
+          {% if form.email.errors %}<p class="mt-1 pl-2 text-sm text-red-700">{{ form.email.errors.0 }}</p>{% endif %}
+        </div>
+
+        <div>
+          <div class="relative">
+            <label for="contact_number" class="sr-only">Contact Number</label>
+            <img src="{% static 'icons/contact.svg' %}" alt="" class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2">
+            <input id="contact_number" name="contact_number" type="tel" placeholder="Contact No." autocomplete="tel"
+              value="{{ form.contact_number.value|default:'' }}"
+              class="h-12 w-full rounded-2xl border-[1.5px] border-forest bg-white/70 pl-12 pr-4 text-sm placeholder:text-forest-dark/70 focus:outline-none focus:ring-2 focus:ring-forest">
+          </div>
+          {% if form.contact_number.errors %}<p class="mt-1 pl-2 text-sm text-red-700">{{ form.contact_number.errors.0 }}</p>{% endif %}
+        </div>
+
+        <div>
+          <div class="relative">
+            <label for="password1" class="sr-only">Password</label>
+            <img src="{% static 'icons/lock.svg' %}" alt="" class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2">
+            <input id="password1" name="password1" type="password" placeholder="Password" autocomplete="new-password"
+              class="h-12 w-full rounded-2xl border-[1.5px] border-forest bg-white/70 pl-12 pr-12 text-sm placeholder:text-forest-dark/70 focus:outline-none focus:ring-2 focus:ring-forest">
+            <button type="button" aria-label="Show password"
+              data-toggle-password="password1"
+              data-icon-hidden="{% static 'icons/closeeye.svg' %}"
+              data-icon-visible="{% static 'icons/openeye.svg' %}"
+              class="absolute right-4 top-1/2 -translate-y-1/2">
+              <img src="{% static 'icons/closeeye.svg' %}" alt="" class="h-5 w-5">
+            </button>
+          </div>
+          {% if form.password1.errors %}<p class="mt-1 pl-2 text-sm text-red-700">{{ form.password1.errors.0 }}</p>{% endif %}
+        </div>
+
+        <div>
+          <div class="relative">
+            <label for="password2" class="sr-only">Confirm Password</label>
+            <img src="{% static 'icons/lock.svg' %}" alt="" class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2">
+            <input id="password2" name="password2" type="password" placeholder="Confirm Password" autocomplete="new-password"
+              class="h-12 w-full rounded-2xl border-[1.5px] border-forest bg-white/70 pl-12 pr-12 text-sm placeholder:text-forest-dark/70 focus:outline-none focus:ring-2 focus:ring-forest">
+            <button type="button" aria-label="Show password"
+              data-toggle-password="password2"
+              data-icon-hidden="{% static 'icons/closeeye.svg' %}"
+              data-icon-visible="{% static 'icons/openeye.svg' %}"
+              class="absolute right-4 top-1/2 -translate-y-1/2">
+              <img src="{% static 'icons/closeeye.svg' %}" alt="" class="h-5 w-5">
+            </button>
+          </div>
+          {% if form.password2.errors %}<p class="mt-1 pl-2 text-sm text-red-700">{{ form.password2.errors.0 }}</p>{% endif %}
+        </div>
+
+        <div>
+          <label class="flex items-center justify-center gap-2 text-sm">
+            <input type="checkbox" name="terms" class="h-4 w-4 accent-forest" {% if form.terms.value %}checked{% endif %}>
+            <span>I agree to the <a href="#" class="underline hover:text-forest">Terms and Conditions</a></span>
+          </label>
+          {% if form.terms.errors %}<p class="mt-1 text-center text-sm text-red-700">{{ form.terms.errors.0 }}</p>{% endif %}
+        </div>
+
+        <button type="submit"
+          class="flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-forest font-semibold text-cream shadow-md hover:bg-forest-dark">
+          Create Account
+          <img src="{% static 'icons/arrowright.svg' %}" alt="" class="h-5 w-5">
+        </button>
+      </form>
+
+      <p class="mt-5 text-center text-sm">
+        Already have an account? <a href="{% url 'login' %}" class="underline hover:text-forest">Log in here</a>
+      </p>
+    </section>
+  </main>
+
+
+  <img src="{% static 'image/wave.png' %}" alt="" class="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-auto w-full">
+
+  <script src="{% static 'js/password-toggle.js' %}" defer></script>
+</body>
+</html>

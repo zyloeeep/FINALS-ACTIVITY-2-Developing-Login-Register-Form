@@ -1,0 +1,27 @@
+{
+  "name": "finals-activity-2-developing-login-register-form",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch",
+    "build": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zyloeeep/FINALS-ACTIVITY-2-Developing-Login-Register-Form.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/zyloeeep/FINALS-ACTIVITY-2-Developing-Login-Register-Form/issues"
+  },
+  "homepage": "https://github.com/zyloeeep/FINALS-ACTIVITY-2-Developing-Login-Register-Form#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.5",
+    "tailwindcss": "^4.3.5"
+  }
+}

@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@source "../../templates";
+@source "../../registration/templates";
+
+@theme {
+  --color-sage: #A3B27F;
+  --color-sage-dark: #6E7F4E;
+  --color-forest: #435234;
+  --color-forest-dark: #2B3620;
+  --color-cream: #F8EFE3;
+  --color-cream-card: #FBF3EA;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
